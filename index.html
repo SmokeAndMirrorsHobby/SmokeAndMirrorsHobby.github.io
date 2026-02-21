@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JND Pairings</title>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <h1>Pokemon Tournament Pairings</h1>
+    <div id="pairings-container">Loading...</div>
+
+    <script>
+
+    
+        // Your Firebase config 
+        const firebaseConfig = {
+  apiKey: "AIzaSyCyHbai2buAq1ZIMP2Tehas3WN8mywj-vw",
+  authDomain: "smokethatbitch.firebaseapp.com",
+  projectId: "smokethatbitch",
+  storageBucket: "smokethatbitch.firebasestorage.app",
+  messagingSenderId: "815812610505",
+  appId: "1:815812610505:web:451e8b8b85546ebeb80018"
+};
+
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+
+        // Initialize Cloud Firestore and get a reference to the service
+        const db = firebase.firestore();
+
+
+        db.collection("pairings").doc("uqfLMFj3bFK8rLjoqGrk")
+            .onSnapshot((doc) => {
+                const htmlString = doc.data().currentPairing;
+    
+                console.log(htmlString);
+                document.getElementById('pairings-container').innerHTML = htmlString;
+            }
+        );
+
+
+
+    </script>
+</body>
+</html>
